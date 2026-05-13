@@ -1,0 +1,578 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLY BETTER STORE</title>
+
+<link rel="icon" type="image/png" href="born.jpg">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:url('bck.jpg') center/cover no-repeat fixed;
+  min-height:100vh;
+  color:white;
+}
+
+/* HEADER */
+
+header{
+  width:100%;
+  padding:18px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#ffb703;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:25px;
+  transition:.3s;
+}
+
+nav a:hover{
+  color:#ffb703;
+}
+
+/* HERO */
+
+.hero{
+  min-height:90vh;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  align-items:center;
+  gap:50px;
+  padding:70px 8%;
+}
+
+.hero-text h1{
+  font-size:60px;
+  line-height:1.1;
+  margin-bottom:20px;
+}
+
+.hero-text h1 span{
+  color:#ffb703;
+}
+
+.hero-text p{
+  color:#ddd;
+  line-height:1.8;
+  margin-bottom:30px;
+  max-width:500px;
+}
+
+.buttons{
+  display:flex;
+  gap:15px;
+}
+
+.btn{
+  padding:14px 28px;
+  border-radius:35px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:#ffb703;
+  color:black;
+}
+
+.btn-primary:hover{
+  transform:scale(1.05);
+}
+
+.btn-secondary{
+  border:2px solid white;
+  color:white;
+}
+
+.btn-secondary:hover{
+  background:white;
+  color:black;
+}
+
+/* HERO CARD */
+
+.hero-card{
+  background:rgba(255,255,255,0.10);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.15);
+  padding:25px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.hero-card img{
+  width:100%;
+  border-radius:22px;
+  margin-bottom:20px;
+}
+
+/* SECTION */
+
+.categories,
+.products{
+  padding:80px 8%;
+  background:rgba(0,0,0,0.20);
+  backdrop-filter:blur(6px);
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:55px;
+}
+
+.section-title h2{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+.section-title p{
+  color:#ddd;
+}
+
+/* CATEGORY */
+
+.category-grid{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;
+}
+
+.category-card{
+  background:rgba(255,255,255,0.10);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:25px;
+  padding:40px 25px;
+  text-align:center;
+  transition:.35s;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.category-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+.category-card.active{
+  border:2px solid #ffb703;
+  background:rgba(255,183,3,0.15);
+}
+
+.icon{
+  width:80px;
+  height:80px;
+  margin:auto;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:42px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.15);
+}
+
+/* PRODUCTS */
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.product-card{
+  background:rgba(255,255,255,0.10);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:25px;
+  overflow:hidden;
+  transition:.35s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.product-card:hover{
+  transform:translateY(-10px);
+}
+
+.product-card img{
+  width:100%;
+  height:320px;
+  object-fit:contain;
+  background:transparent;
+  padding:15px;
+}
+
+.product-info{
+  padding:25px;
+}
+
+.product-info h3{
+  margin-bottom:10px;
+}
+
+.price{
+  color:#ffb703;
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.buy-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#ffb703;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.buy-btn:hover{
+  background:white;
+}
+
+/* CATEGORY ANIMATION */
+
+.product-list{
+  display:none;
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.product-list.active{
+  display:grid;
+  animation:fade .5s ease forwards;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:30px;
+  background:rgba(0,0,0,0.7);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero{
+  grid-template-columns:1fr;
+  text-align:center;
+}
+
+.hero-text p{
+  margin:auto;
+  margin-bottom:30px;
+}
+
+.buttons{
+  justify-content:center;
+}
+
+}
+
+@media(max-width:600px){
+
+header{
+  flex-direction:column;
+  gap:15px;
+}
+
+.hero-text h1{
+  font-size:42px;
+}
+
+.section-title h2{
+  font-size:34px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+  Fly<span>Better</span>
+</div>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Kategori</a>
+  <a href="#">Produk</a>
+  <a href="#">Kontak</a>
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+STYLE BARU <br>
+<span>GEN Z LOOK</span>
+</h1>
+
+<p>
+Temukan outfit terbaik untuk gaya streetwear,
+casual, dan fashion modern kekinian.
+</p>
+
+<div class="buttons">
+
+<a href="#" class="btn btn-primary">
+Belanja Sekarang
+</a>
+
+<a href="#" class="btn btn-secondary">
+Lihat Produk
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<img src="born.jpg">
+
+<h2>WELCOME TO FLY BETTER</h2>
+
+<p>
+Simple • Clean • Streetwear
+</p>
+
+</div>
+
+</section>
+
+<!-- CATEGORY -->
+
+<section class="categories">
+
+<div class="section-title">
+<h2>Kategori Pilihan</h2>
+<p>Klik kategori untuk melihat produk</p>
+</div>
+
+<div class="category-grid">
+
+<div class="category-card active"
+onclick="showCategory('kaos',this)">
+
+<div class="icon">👕</div>
+
+<h3>Kaos</h3>
+
+<p>
+Casual nyaman untuk harian.
+</p>
+
+</div>
+
+<div class="category-card"
+onclick="showCategory('hoodie',this)">
+
+<div class="icon">🧥</div>
+
+<h3>Hoodie</h3>
+
+<p>
+Streetwear modern kekinian.
+</p>
+
+</div>
+
+<div class="category-card"
+onclick="showCategory('oversize',this)">
+
+<div class="icon">👔</div>
+
+<h3>Oversize</h3>
+
+<p>
+Style santai ala Gen Z.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products">
+
+<div class="section-title">
+<h2>Produk Terlaris</h2>
+<p>Koleksi favorit minggu ini</p>
+</div>
+
+<!-- KAOS -->
+
+<div class="product-grid product-list active" id="kaos">
+
+<div class="product-card">
+
+<img src="test.jpg">
+
+<div class="product-info">
+
+<h3>KAOS PREMIUM</h3>
+
+<div class="price">
+Rp89.000
+</div>
+
+<button class="buy-btn">
+Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HOODIE -->
+
+<div class="product-grid product-list" id="hoodie">
+
+<div class="product-card">
+
+<img src="hodie.png">
+
+<div class="product-info">
+
+<h3>HOODIE OVERSIZE</h3>
+
+<div class="price">
+Rp179.000
+</div>
+
+<button class="buy-btn">
+Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- OVERSIZE -->
+
+<div class="product-grid product-list" id="oversize">
+
+<div class="product-card">
+
+<img src="oversize.jpg">
+
+<div class="product-info">
+
+<h3>KAOS OVERSIZE</h3>
+
+<div class="price">
+Rp120.000
+</div>
+
+<button class="buy-btn">
+Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 FLY BETTER STORE
+</p>
+
+</footer>
+
+<script>
+
+function showCategory(category, element){
+
+document.querySelectorAll('.category-card')
+.forEach(card=>{
+card.classList.remove('active');
+});
+
+element.classList.add('active');
+
+document.querySelectorAll('.product-list')
+.forEach(product=>{
+product.classList.remove('active');
+});
+
+document.getElementById(category)
+.classList.add('active');
+
+}
+
+</script>
+
+</body>
+</html>
+```
